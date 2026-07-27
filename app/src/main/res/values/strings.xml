@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Num Conversion</string>
+
+    <string name="mode_calculator">Calculator</string>
+    <string name="mode_convert">Convert</string>
+    <string name="mode_history">History</string>
+
+    <string name="action_clear_history">Clear</string>
+    <string name="history_empty">No history yet</string>
+    <string name="history_tag_calculator">Calc</string>
+    <string name="history_tag_converter">Convert</string>
+
+    <string name="cd_backspace">Backspace</string>
+    <string name="cd_clear">Clear</string>
+    <string name="cd_fraction_entry">Enter fraction</string>
+    <string name="cd_copy_result">Copy result</string>
+    <string name="cd_source_unit">Source unit</string>
+    <string name="cd_target_unit">Target unit</string>
+    <string name="cd_settings">Settings</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_color_palette">Color palette</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="palette_aurora_teal">Aurora Teal</string>
+    <string name="palette_ocean_blue">Ocean Blue</string>
+    <string name="palette_royal_violet">Royal Violet</string>
+    <string name="palette_sunset_amber">Sunset Amber</string>
+    <string name="palette_crimson_rose">Crimson Rose</string>
+
+    <string name="settings_theme_mode">Theme</string>
+    <string name="theme_mode_system">System default</string>
+    <string name="theme_mode_light">Light</string>
+    <string name="theme_mode_dark">Dark</string>
+
+    <string name="settings_haptics">Haptic feedback</string>
+    <string name="settings_haptics_description">Vibrate when keypad buttons are pressed</string>
+    <string name="cd_haptics_toggle">Haptic feedback</string>
+
+    <string name="settings_fraction_precision">Fraction rounding</string>
+    <string name="precision_sixteenth">Nearest 1/16\" (carpentry)</string>
+    <string name="precision_thirty_second">Nearest 1/32\" (trim/cabinet)</string>
+    <string name="precision_sixty_fourth">Nearest 1/64\" (machining)</string>
+
+    <string name="label_to">TO</string>
+    <string name="label_equals">=</string>
+    <string name="hint_input">Input</string>
+    <string name="hint_feet">Feet</string>
+    <string name="hint_inches">Inches</string>
+
+    <string name="error_divide_by_zero">Cannot divide by zero</string>
+    <string name="error_invalid_expression">Invalid expression</string>
+
+    <string name="action_close">Close</string>
+    <string name="settings_privacy_policy_link">Privacy Policy</string>
+
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_updated">Last updated: July 27, 2026</string>
+    <string name="privacy_policy_intro">Num Conversion (\"the app\") is a calculator and unit-conversion utility. This policy explains how the app handles information.</string>
+
+    <string name="privacy_policy_heading_collection">Data Collection</string>
+    <string name="privacy_policy_body_collection">The app does not collect, transmit, or share any personal or sensitive information. It has no internet or network access, no advertising, no analytics, and no third-party SDKs of any kind.</string>
+
+    <string name="privacy_policy_heading_stored">Data Stored On Your Device</string>
+    <string name="privacy_policy_body_stored">The app saves a small set of preferences locally on your device only: your chosen color palette, theme, haptic feedback preference, fraction-rounding precision, and the last unit pair you used in the converter.</string>
+    <string name="privacy_policy_body_history">Your calculation and conversion history is kept in memory only while the app is open, and is cleared automatically when the app is closed. It is never written to disk or sent anywhere.</string>
+    <string name="privacy_policy_body_leaves">None of this information ever leaves your device. Uninstalling the app permanently removes all locally stored preferences.</string>
+
+    <string name="privacy_policy_heading_permissions">Permissions</string>
+    <string name="privacy_policy_body_permissions">The app requests no runtime or special Android permissions.</string>
+
+    <string name="privacy_policy_heading_children">Children\'s Privacy</string>
+    <string name="privacy_policy_body_children">The app is a general-purpose utility not directed at children and does not knowingly collect information from anyone, regardless of age.</string>
+
+    <string name="privacy_policy_heading_contact">Contact</string>
+    <string name="privacy_policy_body_contact">Questions about this policy can be sent to: firfghr25@gmail.com</string>
+</resources>

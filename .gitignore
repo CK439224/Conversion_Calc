@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+local.properties
+
+# Kotlin
+.kotlin/
+
+# Generated release artifacts (APKs, bundles, baseline profiles)
+release/
+*.apk
+*.aab
+*.dex
+*.ap_
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
