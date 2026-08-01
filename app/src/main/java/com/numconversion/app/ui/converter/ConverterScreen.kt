@@ -15,13 +15,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.numconversion.app.R
+import com.numconversion.app.domain.conversion.MeasurementUnit
 import com.numconversion.app.ui.components.AnswerDisplay
+import com.numconversion.app.ui.components.CategoryDropdown
 import com.numconversion.app.ui.components.DisplayCard
 import com.numconversion.app.ui.components.KeypadActions
 import com.numconversion.app.ui.components.KeypadGrid
@@ -33,11 +36,23 @@ import com.numconversion.app.viewmodel.MainViewModel
 @Composable
 fun ConverterScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
     val state by viewModel.converterState.collectAsState()
+    val unitsInCategory = remember(state.category) {
+        MeasurementUnit.entries.filter { it.category == state.category }
+    }
 
     Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
+        CategoryDropdown(
+            label = stringResource(R.string.cd_category),
+            selected = state.category,
+            onSelect = viewModel::onCategoryChange,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(8.dp))
+
         UnitDropdown(
             label = stringResource(R.string.cd_source_unit),
             selected = state.sourceUnit,
+            options = unitsInCategory,
             onSelect = viewModel::onSourceUnitChange,
             modifier = Modifier.fillMaxWidth()
         )
@@ -83,6 +98,7 @@ fun ConverterScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
         UnitDropdown(
             label = stringResource(R.string.cd_target_unit),
             selected = state.targetUnit,
+            options = unitsInCategory,
             onSelect = viewModel::onTargetUnitChange,
             modifier = Modifier.fillMaxWidth()
         )

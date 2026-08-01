@@ -2,6 +2,7 @@ package com.numconversion.app.viewmodel
 
 import com.numconversion.app.domain.conversion.FractionPrecision
 import com.numconversion.app.domain.conversion.MeasurementUnit
+import com.numconversion.app.domain.conversion.UnitCategory
 import com.numconversion.app.ui.theme.ColorPalette
 import com.numconversion.app.ui.theme.ThemeMode
 import org.junit.Assert.assertEquals
@@ -155,6 +156,31 @@ class MainViewModelTest {
     @Test
     fun `empty input produces no result`() {
         assertEquals("", viewModel.converterState.value.result)
+    }
+
+    @Test
+    fun `switching category resets to that category's default unit pair`() {
+        viewModel.onCategoryChange(UnitCategory.WEIGHT)
+        val state = viewModel.converterState.value
+        assertEquals(UnitCategory.WEIGHT, state.sourceUnit.category)
+        assertEquals(UnitCategory.WEIGHT, state.targetUnit.category)
+        assertEquals(MeasurementUnit.KG, state.sourceUnit)
+        assertEquals(MeasurementUnit.LB, state.targetUnit)
+    }
+
+    @Test
+    fun `switching category clears prior input`() {
+        viewModel.onConverterDigit('5')
+        viewModel.onCategoryChange(UnitCategory.VOLUME)
+        assertEquals("", viewModel.converterState.value.input)
+        assertEquals("", viewModel.converterState.value.result)
+    }
+
+    @Test
+    fun `switching to temperature then converting produces a temperature result`() {
+        viewModel.onCategoryChange(UnitCategory.TEMPERATURE)
+        viewModel.onConverterDigit('0')
+        assertEquals("32 °F", viewModel.converterState.value.result)
     }
 
     @Test

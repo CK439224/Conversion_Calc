@@ -14,15 +14,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.numconversion.app.domain.conversion.MeasurementUnit
+import androidx.compose.ui.res.stringResource
+import com.numconversion.app.domain.conversion.UnitCategory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UnitDropdown(
+fun CategoryDropdown(
     label: String,
-    selected: MeasurementUnit,
-    options: List<MeasurementUnit>,
-    onSelect: (MeasurementUnit) -> Unit,
+    selected: UnitCategory,
+    onSelect: (UnitCategory) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -32,7 +32,7 @@ fun UnitDropdown(
         modifier = modifier
     ) {
         TextField(
-            value = selected.displayLabel,
+            value = stringResource(selected.displayNameRes),
             onValueChange = {},
             readOnly = true,
             label = { Text(label) },
@@ -45,11 +45,11 @@ fun UnitDropdown(
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            options.forEach { unit ->
+            UnitCategory.entries.forEach { category ->
                 DropdownMenuItem(
-                    text = { Text(unit.displayLabel) },
+                    text = { Text(stringResource(category.displayNameRes)) },
                     onClick = {
-                        onSelect(unit)
+                        onSelect(category)
                         expanded = false
                     }
                 )

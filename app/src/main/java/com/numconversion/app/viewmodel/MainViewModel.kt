@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.numconversion.app.data.settings.SettingsRepository
 import com.numconversion.app.domain.conversion.FractionPrecision
 import com.numconversion.app.domain.conversion.MeasurementUnit
+import com.numconversion.app.domain.conversion.UnitCategory
 import com.numconversion.app.domain.conversion.UnitConverter
 import com.numconversion.app.domain.engine.CalculatorResult
 import com.numconversion.app.domain.engine.Evaluator
@@ -223,6 +224,24 @@ class MainViewModel(private val settingsRepository: SettingsRepository? = null) 
         persistLastUnits()
     }
 
+    /** Switching category resets both source and target to that category's default pair at once
+     *  (unlike [onSourceUnitChange], which only ever changes one side) — a unit from the old
+     *  category wouldn't be valid to keep as the other side of the new one. */
+    fun onCategoryChange(category: UnitCategory) {
+        val (defaultSource, defaultTarget) = MeasurementUnit.defaultsFor(category)
+        _converterState.update {
+            val activeField = if (defaultSource == MeasurementUnit.FT_IN) ConverterField.FEET else ConverterField.SINGLE
+            recomputeConversion(
+                ConverterUiState(
+                    sourceUnit = defaultSource,
+                    targetUnit = defaultTarget,
+                    activeField = activeField
+                )
+            )
+        }
+        persistLastUnits()
+    }
+
     /** One-shot restore of the persisted unit pair at startup — skips the reset/wipe that
      *  [onSourceUnitChange] does, since there's no user input yet to preserve or clear, and must
      *  not re-persist what it just loaded. */
@@ -329,12 +348,9 @@ class MainViewModel(private val settingsRepository: SettingsRepository? = null) 
             val inches = state.inchesInput.ifBlank { "0" }
             "$feet ft $inches in"
         } else {
-            val unitAbbreviation = when (state.sourceUnit) {
-                MeasurementUnit.MM -> "mm"
-                MeasurementUnit.M -> "m"
-                MeasurementUnit.IN, MeasurementUnit.FRACTION -> "in"
-                MeasurementUnit.FT_IN -> ""
-            }
+            // FRACTION's own displayLabel is "Fraction" (a dropdown label, not a unit suffix) —
+            // the value the user actually typed is a plain decimal number of inches.
+            val unitAbbreviation = if (state.sourceUnit == MeasurementUnit.FRACTION) "in" else state.sourceUnit.displayLabel
             "${state.input} $unitAbbreviation"
         }
         return "$sourceText → ${state.result}"
