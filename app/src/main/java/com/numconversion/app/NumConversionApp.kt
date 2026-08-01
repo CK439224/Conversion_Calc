@@ -1,5 +1,6 @@
 package com.numconversion.app
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
@@ -80,10 +81,12 @@ fun NumConversionApp() {
                             AppMode.HISTORY to stringResource(R.string.mode_history)
                         )
                     )
-                    when (mode) {
-                        AppMode.CALCULATOR -> CalculatorScreen(viewModel)
-                        AppMode.CONVERT -> ConverterScreen(viewModel)
-                        AppMode.HISTORY -> HistoryScreen(viewModel)
+                    Box(modifier = Modifier.weight(1f)) {
+                        when (mode) {
+                            AppMode.CALCULATOR -> CalculatorScreen(viewModel)
+                            AppMode.CONVERT -> ConverterScreen(viewModel)
+                            AppMode.HISTORY -> HistoryScreen(viewModel)
+                        }
                     }
                 }
             }

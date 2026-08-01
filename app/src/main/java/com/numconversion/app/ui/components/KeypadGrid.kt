@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -41,8 +41,8 @@ fun KeypadGrid(
 ) {
     val isCalculator = mode == KeypadMode.CALCULATOR
     val colors = MaterialTheme.calculatorColors
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        KeypadRow(Modifier.height(72.dp)) {
+    Column(modifier = modifier.fillMaxHeight(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        KeypadRow(Modifier.weight(1f)) {
             CalcButton("C", actions.onClear, Modifier.weight(1f), contentDescription = stringResource(R.string.cd_clear))
             CalcButton("⌫", actions.onBackspace, Modifier.weight(1f), contentDescription = stringResource(R.string.cd_backspace))
             CalcButton(
@@ -57,7 +57,7 @@ fun KeypadGrid(
                 containerColor = colors.keyOperatorContainer, contentColor = colors.keyOperatorContent
             )
         }
-        KeypadRow(Modifier.height(72.dp)) {
+        KeypadRow(Modifier.weight(1f)) {
             CalcButton("7", { actions.onDigit('7') }, Modifier.weight(1f))
             CalcButton("8", { actions.onDigit('8') }, Modifier.weight(1f))
             CalcButton("9", { actions.onDigit('9') }, Modifier.weight(1f))
@@ -66,7 +66,7 @@ fun KeypadGrid(
                 containerColor = colors.keyOperatorContainer, contentColor = colors.keyOperatorContent
             )
         }
-        KeypadRow(Modifier.height(72.dp)) {
+        KeypadRow(Modifier.weight(1f)) {
             CalcButton("4", { actions.onDigit('4') }, Modifier.weight(1f))
             CalcButton("5", { actions.onDigit('5') }, Modifier.weight(1f))
             CalcButton("6", { actions.onDigit('6') }, Modifier.weight(1f))
@@ -75,7 +75,7 @@ fun KeypadGrid(
                 containerColor = colors.keyOperatorContainer, contentColor = colors.keyOperatorContent
             )
         }
-        KeypadRow(Modifier.height(72.dp)) {
+        KeypadRow(Modifier.weight(1f)) {
             CalcButton("1", { actions.onDigit('1') }, Modifier.weight(1f))
             CalcButton("2", { actions.onDigit('2') }, Modifier.weight(1f))
             CalcButton("3", { actions.onDigit('3') }, Modifier.weight(1f))
@@ -84,7 +84,7 @@ fun KeypadGrid(
                 containerColor = colors.keyOperatorContainer, contentColor = colors.keyOperatorContent
             )
         }
-        KeypadRow(Modifier.height(72.dp)) {
+        KeypadRow(Modifier.weight(1f)) {
             CalcButton("()", actions.onParenthesis, Modifier.weight(1f), enabled = isCalculator)
             CalcButton("0", { actions.onDigit('0') }, Modifier.weight(1f))
             CalcButton(".", actions.onDecimal, Modifier.weight(1f))
